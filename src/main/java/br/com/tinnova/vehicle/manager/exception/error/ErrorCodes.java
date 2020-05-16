@@ -5,7 +5,7 @@ package br.com.tinnova.vehicle.manager.exception.error;
         //NotFound
         VEHICLE_NOT_FOUND(404001, "Vehicles not found"),
         ENDPOINT_NOT_FOUND(404002, "EndPoint Not Found"),
-        ENTITY_NOT_FOUND(404003, "Entity not found"),
+        ENTITY_NOT_FOUND(404003, "Vehicle not found"),
 
         //BadRequest
         PAYLOAD_IS_MANDATORY(400001, "Payload is mandatory");

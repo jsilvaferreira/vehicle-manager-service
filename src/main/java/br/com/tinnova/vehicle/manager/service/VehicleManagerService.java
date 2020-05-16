@@ -68,26 +68,6 @@ public class VehicleManagerService {
         if (payload == null){
             throw new BadRequestException(ErrorCodes.PAYLOAD_IS_MANDATORY);
         }
-        return vehicleRepository.partialUpdate(merge(payload,existingVehicle,vehicleId));
-    }
-
-    private Vehicle merge (VehicleRequest payload, Vehicle existingVehicle, long vehicleId){
-        if (payload.getBrand() != null){
-            existingVehicle.setBrand(payload.getBrand());
-        } else if (payload.getCreated() != null){
-            existingVehicle.setCreated(payload.getCreated());
-        } else if (payload.getDescription() != null){
-            existingVehicle.setDescription(payload.getDescription());
-        } else if (payload.getUpdate() != null){
-            existingVehicle.setUpdate(payload.getUpdate());
-        } else if (payload.getVehicle() != null){
-            existingVehicle.setVehicle(payload.getVehicle());
-        } else if (payload.getYear() != null){
-            existingVehicle.setYear(payload.getYear());
-        }
-
-        existingVehicle.setId(vehicleId);
-
-        return existingVehicle;
+        return vehicleRepository.partialUpdate(payload,existingVehicle,vehicleId);
     }
 }

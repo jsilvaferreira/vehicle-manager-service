@@ -4,6 +4,7 @@ import br.com.tinnova.vehicle.manager.endpoint.request.VehicleRequest;
 import br.com.tinnova.vehicle.manager.endpoint.resource.UnsoldVehiclesResource;
 import br.com.tinnova.vehicle.manager.endpoint.resource.VehicleResource;
 import br.com.tinnova.vehicle.manager.repository.entity.Vehicle;
+import org.modelmapper.ModelMapper;
 
 
 import java.util.List;
@@ -34,7 +35,7 @@ public class VehicleRepositoryConverter {
     }
 
     public static Vehicle toEntity(VehicleRequest vehicleRequest, long vehicleId){
-        Vehicle vehicle = modelMapper.map(vehicleRequest, Vehicle.class) : null;
+        Vehicle vehicle = modelMapper.map(vehicleRequest, Vehicle.class);
         vehicle.setId(vehicleId);
         return vehicle;
     }

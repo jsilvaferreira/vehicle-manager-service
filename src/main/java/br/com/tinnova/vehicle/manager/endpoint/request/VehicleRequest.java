@@ -4,7 +4,6 @@ import java.time.ZonedDateTime;
 
 public class VehicleRequest {
 
-    private Integer id;
     private String vehicle;
     private String brand;
     private Integer year;
@@ -12,14 +11,6 @@ public class VehicleRequest {
     private boolean sold;
     private ZonedDateTime created;
     private ZonedDateTime update;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getVehicle() {
         return vehicle;
@@ -75,5 +66,18 @@ public class VehicleRequest {
 
     public void setUpdate(ZonedDateTime update) {
         this.update = update;
+    }
+
+    @Override
+    public String toString() {
+        return "VehicleRequest{" +
+                "vehicle='" + vehicle + '\'' +
+                ", brand='" + brand + '\'' +
+                ", year=" + year +
+                ", description='" + description + '\'' +
+                ", sold=" + sold +
+                ", created=" + created +
+                ", update=" + update +
+                '}';
     }
 }

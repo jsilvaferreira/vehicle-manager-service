@@ -41,7 +41,7 @@ public class VehicleRepository {
 
     @Transactional
     public Vehicle updateVehicleData(VehicleRequest payload,long vehicleId) {
-        return vehicleJpaRepository.update(VehicleRepositoryConverter.toEntity(payload, vehicleId));
+        return vehicleJpaRepository.save(VehicleRepositoryConverter.toEntity(payload, vehicleId));
     }
 
     public long getTotalUnsoldVehicles() {
@@ -61,8 +61,32 @@ public class VehicleRepository {
         return  totalVehiclesByManufacturer;
     }
 
-    public Vehicle partialUpdate(Vehicle merge) {
-        return vehicleJpaRepository.update(merge);
+    public Vehicle partialUpdate(VehicleRequest payload, Vehicle existingVehicle, long vehicleId) {
+        return vehicleJpaRepository.save(merge(payload,existingVehicle,vehicleId));
+    }
+
+    private Vehicle merge (VehicleRequest payload, Vehicle existingVehicle, long vehicleId){
+        if (payload.getBrand() != null){
+            existingVehicle.setBrand(payload.getBrand());
+        }
+        if (payload.getCreated() != null){
+            existingVehicle.setCreated(payload.getCreated());
+        }
+        if (payload.getDescription() != null){
+            existingVehicle.setDescription(payload.getDescription());
+        }
+        if (payload.getUpdate() != null){
+            existingVehicle.setUpdate(payload.getUpdate());
+        }
+        if (payload.getVehicle() != null){
+            System.out.println("Payload vehicle entrou e tem o valor: " + payload.getVehicle());
+            existingVehicle.setVehicle(payload.getVehicle());
+        }
+        if (payload.getYear() != null){
+            existingVehicle.setYear(payload.getYear());
+        }
+        existingVehicle.setId(vehicleId);
+        return existingVehicle;
     }
 }
 
