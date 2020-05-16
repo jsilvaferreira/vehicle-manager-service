@@ -1,0 +1,3 @@
+INSERT INTO vehicle (vehicle, brand, year, description, sold, created, updated) VALUES ('Focus', 'Ford', 2011, 'Carro intermediário', true, STR_TO_DATE('01-05-2020','%c-%d-%Y'), STR_TO_DATE('5-16-2020','%c-%d-%Y'));
+INSERT INTO vehicle (vehicle, brand, year, description, sold, created, updated) VALUES ('Civic', 'Honda', 2009, 'Carro de luxo', false, STR_TO_DATE('01-01-2020','%c-%d-%Y'), STR_TO_DATE('5-1-2020','%c-%d-%Y'));
+INSERT INTO vehicle (vehicle, brand, year, description, sold, created, updated) VALUES ('Jetta', 'Volkswagem', 2015, 'Carro de luxo', true, STR_TO_DATE('03-15-2020','%c-%d-%Y'), STR_TO_DATE('03-22-2020','%c-%d-%Y'));
