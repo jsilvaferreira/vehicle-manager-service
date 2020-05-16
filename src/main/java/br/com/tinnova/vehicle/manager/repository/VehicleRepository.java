@@ -64,6 +64,7 @@ public class VehicleRepository {
         return  totalVehiclesByManufacturer;
     }
 
+    @Transactional
     public Vehicle partialUpdate(VehicleRequest payload, Vehicle existingVehicle, long vehicleId) {
         return vehicleJpaRepository.save(merge(payload,existingVehicle,vehicleId));
     }

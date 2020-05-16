@@ -5,7 +5,6 @@ import br.com.tinnova.vehicle.manager.endpoint.resource.UnsoldVehiclesResource;
 import br.com.tinnova.vehicle.manager.endpoint.resource.VehicleResource;
 import br.com.tinnova.vehicle.manager.repository.entity.Vehicle;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

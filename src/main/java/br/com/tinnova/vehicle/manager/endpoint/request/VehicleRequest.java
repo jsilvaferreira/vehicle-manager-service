@@ -67,17 +67,4 @@ public class VehicleRequest {
     public void setUpdate(ZonedDateTime update) {
         this.update = update;
     }
-
-    @Override
-    public String toString() {
-        return "VehicleRequest{" +
-                "vehicle='" + vehicle + '\'' +
-                ", brand='" + brand + '\'' +
-                ", year=" + year +
-                ", description='" + description + '\'' +
-                ", sold=" + sold +
-                ", created=" + created +
-                ", update=" + update +
-                '}';
-    }
 }
