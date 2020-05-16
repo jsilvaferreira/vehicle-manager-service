@@ -17,7 +17,7 @@ https://github.com/jsilvaferreira/vehicle-manager-service.git
 
 2.3 - Configurar o banco de dados rodando o comando a seguir:
 
-Obs.: Lembrando que para rodar o comando abaixo é necessário ter o docker instalado em sua máquina:
+***Obs.: Lembrando que para rodar o comando abaixo é necessário ter o docker instalado em sua máquina.***
 
  ```sudo docker run -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=tinnova -e MYSQL_USER=VehicleManager -e MYSQL_PASSWORD=vms -p 3306:3306 -d mysql:latest ```
 
@@ -30,6 +30,7 @@ Obs.: Lembrando que para rodar o comando abaixo é necessário ter o docker inst
  
  use tinnova
  ```
+Obs.: Caso você tenha problemas ao rodar o comando  ```docker exec -it mysql:latest bash ``` pode ser por conta do nome do seu container no docker que pode estar diferente. Rodar o comando ```docker ps -a```; procurar a imagem com o nome ```mysql:latest``` e ver o nome(coluna NAMES) que está atribuido a ela.
 
 3 - EndPoints:
 
