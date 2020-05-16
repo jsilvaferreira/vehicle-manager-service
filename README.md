@@ -11,7 +11,7 @@
 
 2.1 - Baixar o projeto através do comando:
 
-https://github.com/jsilvaferreira/vehicle-manager-service.git
+```git clone https://github.com/jsilvaferreira/vehicle-manager-service.git```
 
 2.2 - Realizar o comando  ```mvn clean install ``` para buildar o projeto. Se necessário, rodar o comando anterior como  ```mvn clean install  -U ``` caso tenha problemas com dependência do maven.
 
@@ -31,6 +31,8 @@ https://github.com/jsilvaferreira/vehicle-manager-service.git
  use tinnova
  ```
 ***Obs.: Caso você tenha problemas ao rodar o comando  ```docker exec -it mysql:latest bash ``` pode ser por conta do nome do seu container no docker que pode estar diferente. Rodar o comando ```docker ps -a```; procurar a imagem com o nome ```mysql:latest``` e ver o nome(coluna NAMES) que está atribuido a ela.***
+
+2.5 - Iniciar o servidor tomcat. Caso você tenha problemas com o driver do mysql,ele pode estar acontencendo pelo fato da sua IDE não está o encontrando. Uma forma de validar isso, é iniciar a aplicação via terminal(Necessário estar dentro da pasta do projeto) através do comando ```./mvnw spring-boot:run``` para ver se o erro persiste.
 
 3 - EndPoints:
 
