@@ -2,9 +2,9 @@ package br.com.tinnova.vehicle.manager.service;
 
 import br.com.tinnova.vehicle.manager.endpoint.request.VehicleRequest;
 import br.com.tinnova.vehicle.manager.endpoint.resource.DistributionByManufacturerResource;
-import br.com.tinnova.vehicle.manager.exception.BadRequestException;
-import br.com.tinnova.vehicle.manager.exception.NotFoundException;
-import br.com.tinnova.vehicle.manager.exception.error.ErrorCodes;
+import br.com.tinnova.vehicle.manager.infrastructure.exception.BadRequestException;
+import br.com.tinnova.vehicle.manager.infrastructure.exception.NotFoundException;
+import br.com.tinnova.vehicle.manager.infrastructure.exception.error.ErrorCodes;
 import br.com.tinnova.vehicle.manager.repository.VehicleRepository;
 import br.com.tinnova.vehicle.manager.repository.entity.Vehicle;
 import org.springframework.stereotype.Service;

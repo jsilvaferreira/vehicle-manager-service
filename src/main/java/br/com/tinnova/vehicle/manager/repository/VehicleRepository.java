@@ -16,9 +16,12 @@ public class VehicleRepository {
 
     VehicleJpaRepository vehicleJpaRepository;
 
-    VehicleRepository(VehicleJpaRepository vehicleJpaRepository) {
+    public VehicleRepository(VehicleJpaRepository vehicleJpaRepository, VehicleRepositoryConverter vehicleRepositoryConverter) {
         this.vehicleJpaRepository = vehicleJpaRepository;
+        this.vehicleRepositoryConverter = vehicleRepositoryConverter;
     }
+
+    VehicleRepositoryConverter vehicleRepositoryConverter;
 
     public List<Vehicle> findAllVehicles(){
         return vehicleJpaRepository.findAll();
@@ -36,12 +39,12 @@ public class VehicleRepository {
 
     @Transactional
     public Vehicle save(VehicleRequest payload) {
-        return vehicleJpaRepository.save(VehicleRepositoryConverter.toEntity(payload));
+        return vehicleJpaRepository.save(vehicleRepositoryConverter.toEntity(payload));
     }
 
     @Transactional
     public Vehicle updateVehicleData(VehicleRequest payload,long vehicleId) {
-        return vehicleJpaRepository.save(VehicleRepositoryConverter.toEntity(payload, vehicleId));
+        return vehicleJpaRepository.save(vehicleRepositoryConverter.toEntity(payload, vehicleId));
     }
 
     public long getTotalUnsoldVehicles() {
@@ -79,7 +82,6 @@ public class VehicleRepository {
             existingVehicle.setUpdate(payload.getUpdate());
         }
         if (payload.getVehicle() != null){
-            System.out.println("Payload vehicle entrou e tem o valor: " + payload.getVehicle());
             existingVehicle.setVehicle(payload.getVehicle());
         }
         if (payload.getYear() != null){

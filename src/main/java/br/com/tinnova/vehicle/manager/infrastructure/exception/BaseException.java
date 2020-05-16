@@ -1,4 +1,4 @@
-package br.com.tinnova.vehicle.manager.exception;
+package br.com.tinnova.vehicle.manager.infrastructure.exception;
 
 public class BaseException extends RuntimeException{
 

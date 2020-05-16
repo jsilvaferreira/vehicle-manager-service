@@ -5,36 +5,42 @@ import br.com.tinnova.vehicle.manager.endpoint.resource.UnsoldVehiclesResource;
 import br.com.tinnova.vehicle.manager.endpoint.resource.VehicleResource;
 import br.com.tinnova.vehicle.manager.repository.entity.Vehicle;
 import org.modelmapper.ModelMapper;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class VehicleRepositoryConverter {
 
-    private static ModelMapper modelMapper = new ModelMapper();
+    ModelMapper modelMapper;
 
-    public static VehicleResource toResource(Vehicle vehicle){
+    public VehicleRepositoryConverter(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
+    }
+
+    public VehicleResource toResource(Vehicle vehicle){
         VehicleResource vehicleResource = new VehicleResource(vehicle);
         return vehicleResource;
     }
 
-    public static UnsoldVehiclesResource toResource(long total){
+    public  UnsoldVehiclesResource toResource(long total){
         UnsoldVehiclesResource unsoldVehiclesResource = new UnsoldVehiclesResource(total);
         return unsoldVehiclesResource;
     }
 
-    public static List<VehicleResource> listFromVehicles(List<Vehicle> vehicles){
+    public List<VehicleResource> listFromVehicles(List<Vehicle> vehicles){
         return vehicles.stream()
                 .map(VehicleResource::new)
                 .collect(Collectors.toList());
     }
 
-    public static Vehicle toEntity(VehicleRequest vehicleRequest){
+    public  Vehicle toEntity(VehicleRequest vehicleRequest){
       return vehicleRequest != null ? modelMapper.map(vehicleRequest, Vehicle.class) : null;
     }
 
-    public static Vehicle toEntity(VehicleRequest vehicleRequest, long vehicleId){
+    public Vehicle toEntity(VehicleRequest vehicleRequest, long vehicleId){
         Vehicle vehicle = modelMapper.map(vehicleRequest, Vehicle.class);
         vehicle.setId(vehicleId);
         return vehicle;

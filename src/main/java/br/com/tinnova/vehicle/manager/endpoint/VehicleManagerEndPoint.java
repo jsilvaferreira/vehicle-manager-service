@@ -19,27 +19,29 @@ import java.util.List;
 public class VehicleManagerEndPoint {
 
     VehicleManagerService vehicleManagerService;
+    VehicleRepositoryConverter vehicleRepositoryConverter;
 
-    public VehicleManagerEndPoint(VehicleManagerService vehicleManagerService) {
+    public VehicleManagerEndPoint(VehicleManagerService vehicleManagerService, VehicleRepositoryConverter vehicleRepositoryConverter) {
         this.vehicleManagerService = vehicleManagerService;
+        this.vehicleRepositoryConverter = vehicleRepositoryConverter;
     }
 
     @GetMapping("/veiculos")
     public ResponseEntity<List<VehicleResource>> findAllVehicles(){
         List<Vehicle> vehicles = vehicleManagerService.findAllVehicles();
-        return ResponseEntity.ok(VehicleRepositoryConverter.listFromVehicles(vehicles));
+        return ResponseEntity.ok(vehicleRepositoryConverter.listFromVehicles(vehicles));
     }
 
     @GetMapping("/veiculos/{vehicleId}")
     public ResponseEntity<VehicleResource> findVehicleById(@PathVariable final long vehicleId){
         Vehicle vehicle = vehicleManagerService.findVehicleById(vehicleId);
-        return ResponseEntity.ok(VehicleRepositoryConverter.toResource(vehicle));
+        return ResponseEntity.ok(vehicleRepositoryConverter.toResource(vehicle));
     }
 
-    @GetMapping("/veiculos/totalVendidos")
+    @GetMapping("/veiculos/vendidos")
     public ResponseEntity<UnsoldVehiclesResource> getTotalUnsoldVehicles(){
         long totalUnsoldVehicles = vehicleManagerService.getTotalUnsoldVehicles();
-        return ResponseEntity.ok(VehicleRepositoryConverter.toResource(totalUnsoldVehicles));
+        return ResponseEntity.ok(vehicleRepositoryConverter.toResource(totalUnsoldVehicles));
     }
 
     @GetMapping("/veiculos/distribuicaoPorFabricante")
@@ -52,7 +54,7 @@ public class VehicleManagerEndPoint {
     @PostMapping("/veiculos")
     public ResponseEntity<VehicleResource> save (@RequestBody(required = true) VehicleRequest payload){
         Vehicle vehicle = vehicleManagerService.save(payload);
-        return ResponseEntity.status(HttpStatus.CREATED).body(VehicleRepositoryConverter.toResource(vehicle));
+        return ResponseEntity.status(HttpStatus.CREATED).body(vehicleRepositoryConverter.toResource(vehicle));
     }
 
     @DeleteMapping("/veiculos/{vehicleId}")
@@ -66,7 +68,7 @@ public class VehicleManagerEndPoint {
             @PathVariable("vehicleId") final Long vehicleId,
             @RequestBody final VehicleRequest payload){
         Vehicle vehicle = vehicleManagerService.updateVehicleData(payload, vehicleId);
-        return ResponseEntity.ok(VehicleRepositoryConverter.toResource(vehicle));
+        return ResponseEntity.ok(vehicleRepositoryConverter.toResource(vehicle));
     }
 
     @PatchMapping("/veiculos/{vehicleId}")
@@ -75,6 +77,6 @@ public class VehicleManagerEndPoint {
             @RequestBody final VehicleRequest payload){
         Vehicle existingVehicle = vehicleManagerService.findVehicleById(vehicleId);
         Vehicle vehicle = vehicleManagerService.partialUpdate(payload, existingVehicle, vehicleId);
-        return ResponseEntity.ok(VehicleRepositoryConverter.toResource(vehicle));
+        return ResponseEntity.ok(vehicleRepositoryConverter.toResource(vehicle));
     }
 }

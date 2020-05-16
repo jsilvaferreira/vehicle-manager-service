@@ -1,9 +1,9 @@
-package br.com.tinnova.vehicle.manager.exception.handler;
+package br.com.tinnova.vehicle.manager.infrastructure.exception.handler;
 
 import br.com.tinnova.vehicle.manager.endpoint.resource.ErrorResource;
-import br.com.tinnova.vehicle.manager.exception.BadRequestException;
-import br.com.tinnova.vehicle.manager.exception.NotFoundException;
-import br.com.tinnova.vehicle.manager.exception.error.ErrorCodes;
+import br.com.tinnova.vehicle.manager.infrastructure.exception.BadRequestException;
+import br.com.tinnova.vehicle.manager.infrastructure.exception.NotFoundException;
+import br.com.tinnova.vehicle.manager.infrastructure.exception.error.ErrorCodes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

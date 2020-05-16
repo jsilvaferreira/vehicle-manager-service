@@ -1,4 +1,4 @@
-package br.com.tinnova.vehicle.manager.exception.error;
+package br.com.tinnova.vehicle.manager.infrastructure.exception.error;
 
     public enum ErrorCodes{
 

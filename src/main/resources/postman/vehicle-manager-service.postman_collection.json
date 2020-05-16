@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "5d234e01-b735-46b7-bb8a-6cb4098c72cb",
+		"name": "vehicle-manager-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "findAllVehicles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "Retorna todos os veiculos cadastrados."
+			},
+			"response": []
+		},
+		{
+			"name": "findVehicleById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "Retorna todos os veiculos cadastrados."
+			},
+			"response": []
+		},
+		{
+			"name": "getTotalUnsoldVehicles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "Retorna todos os veiculos cadastrados."
+			},
+			"response": []
+		},
+		{
+			"name": "getTotalVehiclesByManufacturer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "Retorna todos os veiculos cadastrados."
+			},
+			"response": []
+		},
+		{
+			"name": "removeVehicle",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"vehicle\" : \"Jetta\",\n  \"brand\" : \"Volkswagem\",\n  \"year\" : 2010,\n  \"description\": \"Carro de luxo\",\n  \"sold\": true,\n  \"create\": \"2020-01-04T21:00:00-03:00\",\n  \"updated\": \"2020-01-04T21:00:00-03:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/api/veiculos",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"veiculos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateVehicleData",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"vehicle\" : \"Jetta\",\n  \"brand\" : \"Volkswagem\",\n  \"year\" : 2010,\n  \"description\": \"Carro de luxo\",\n  \"sold\": true,\n  \"create\": \"2020-01-04T21:00:00-03:00\",\n  \"updated\": \"2020-01-04T21:00:00-03:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/api/veiculos",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"veiculos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "partialUpdate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"vehicle\" : \"Jetta\",\n  \"brand\" : \"Volkswagem\",\n  \"year\" : 2010,\n  \"description\": \"Carro de luxo\",\n  \"sold\": true,\n  \"create\": \"2020-01-04T21:00:00-03:00\",\n  \"updated\": \"2020-01-04T21:00:00-03:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/api/veiculos",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"veiculos"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
