@@ -52,7 +52,7 @@
 
 - ```DELETE - /api/veiculos/{vehicleId} ```
 
-4 - Dentro da pasta  ```../resources/postman ``` contém um arquivo para chamar cada EndPoint do projeto. Esse arquivo precisa ser inserido//importado no Programa Postman. [Clique aqui para baixar](https://www.postman.com/downloads/)
+4 - Dentro da pasta  ```../resources/postman ``` contém um arquivo para chamar cada EndPoint do projeto. Esse arquivo precisa ser inserido/importado no Programa Postman. [Clique aqui para baixar](https://www.postman.com/downloads/)
 
 :+1::+1:
 
