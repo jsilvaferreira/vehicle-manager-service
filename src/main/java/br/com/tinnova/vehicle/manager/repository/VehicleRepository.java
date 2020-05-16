@@ -33,13 +33,13 @@ public class VehicleRepository {
     }
 
     @Transactional
-    public Vehicle save(Vehicle body) {
-        return vehicleJpaRepository.save(body);
+    public Vehicle save(Vehicle payload) {
+        return vehicleJpaRepository.save(payload);
     }
 
     @Transactional
-    public Vehicle updateVehicleData(Vehicle body) {
-        return vehicleJpaRepository.save(body);
+    public Vehicle updateVehicleData(Vehicle payload,long vehicleId) {
+        return vehicleJpaRepository.update(payload,vehicleId);
     }
 
     public long getTotalUnsoldVehicles() {
@@ -57,6 +57,10 @@ public class VehicleRepository {
             totalVehiclesByManufacturer.add(resource);
         }
         return  totalVehiclesByManufacturer;
+    }
+
+    public Vehicle partialUpdate(Vehicle merge, long vehicleId) {
+        return vehicleJpaRepository.update(merge, vehicleId);
     }
 }
 

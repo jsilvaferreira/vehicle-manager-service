@@ -49,20 +49,32 @@ public class VehicleManagerEndPoint {
 
     //Todo Receber VehicleRequest e converter para Vehicle Entity, corrigir erro de data na hora de salvar na base
     @PostMapping("/veiculos")
-    public ResponseEntity<VehicleResource> save (@RequestBody(required = true) Vehicle body){
-        Vehicle vehicle = vehicleManagerService.save(body);
+    public ResponseEntity<VehicleResource> save (@RequestBody(required = true) Vehicle payload){
+        Vehicle vehicle = vehicleManagerService.save(payload);
         return ResponseEntity.status(HttpStatus.CREATED).body(VehicleRepositoryConverter.toResource(vehicle));
     }
 
     @DeleteMapping("/veiculos/{vehicleId}")
-    public ResponseEntity<Object> removeVehicle(@PathVariable final long vehicleId){
+    public ResponseEntity<Object> removeVehicle(@PathVariable("vehicleId") final long vehicleId){
         vehicleManagerService.delete(vehicleId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @PutMapping("/veiculos")
-    public ResponseEntity<VehicleResource> updateVehicleData(@RequestBody(required = true) Vehicle body){
-        Vehicle vehicle = vehicleManagerService.updateVehicleData(body);
+    @PutMapping("/veiculos/{vehicleId}")
+    public ResponseEntity<VehicleResource> updateVehicleData(
+            @PathVariable("vehicleId") final Long vehicleId,
+            @RequestBody final Vehicle payload){
+        Vehicle vehicle = vehicleManagerService.updateVehicleData(payload, vehicleId);
+        return ResponseEntity.ok(VehicleRepositoryConverter.toResource(vehicle));
+    }
+
+    @PatchMapping("/veiculos/{vehicleId}")
+    public ResponseEntity<VehicleResource> partialUpdate(
+            @PathVariable("vehicleId") final Long vehicleId,
+            @RequestBody final Vehicle payload){
+
+        Vehicle existingVehicle = vehicleManagerService.findVehicleById(vehicleId);
+        Vehicle vehicle = vehicleManagerService.partialUpdate(payload, existingVehicle, vehicleId);
         return ResponseEntity.ok(VehicleRepositoryConverter.toResource(vehicle));
     }
 }

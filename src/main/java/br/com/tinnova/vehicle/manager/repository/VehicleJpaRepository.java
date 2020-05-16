@@ -14,7 +14,9 @@ public interface VehicleJpaRepository extends Repository<Vehicle, Long> {
 
     void delete(Vehicle vehicle);
 
-    Vehicle save(Vehicle body);
+    Vehicle save(Vehicle payload);
+
+    Vehicle update(Vehicle payload, long id);
 
     @Query("Select count(v) from Vehicle v where v.sold = true")
     long calculatesNumberUnsoldVehicles();

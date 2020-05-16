@@ -1,11 +1,13 @@
 package br.com.tinnova.vehicle.manager.service;
 
 import br.com.tinnova.vehicle.manager.endpoint.resource.DistributionByManufacturerResource;
+import br.com.tinnova.vehicle.manager.exception.BadRequestException;
+import br.com.tinnova.vehicle.manager.exception.NotFoundException;
 import br.com.tinnova.vehicle.manager.exception.error.ErrorCodes;
-import br.com.tinnova.vehicle.manager.exception.handler.NotFoundException;
 import br.com.tinnova.vehicle.manager.repository.VehicleRepository;
 import br.com.tinnova.vehicle.manager.repository.entity.Vehicle;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -47,11 +49,41 @@ public class VehicleManagerService {
         return vehicleRepository.getTotalVehiclesByManufacturer();
     }
 
-    public Vehicle save(Vehicle body) {
-        return vehicleRepository.save(body);
+    public Vehicle save(Vehicle payload) {
+        if (payload == null){
+            throw new BadRequestException(ErrorCodes.PAYLOAD_IS_MANDATORY);
+        }
+        return vehicleRepository.save(payload);
     }
 
-    public Vehicle updateVehicleData(Vehicle body) {
-        return vehicleRepository.updateVehicleData(body);
+    public Vehicle updateVehicleData(Vehicle payload, long vehicleId) {
+        if (payload == null){
+            throw new BadRequestException(ErrorCodes.PAYLOAD_IS_MANDATORY);
+        }
+        return vehicleRepository.updateVehicleData(payload, vehicleId);
+    }
+
+    public Vehicle partialUpdate(Vehicle payload, Vehicle existingVehicle, long vehicleId) {
+        if (payload == null){
+            throw new BadRequestException(ErrorCodes.PAYLOAD_IS_MANDATORY);
+        }
+        return vehicleRepository.partialUpdate(merge(payload,existingVehicle), vehicleId);
+    }
+
+    private Vehicle merge (Vehicle payload, Vehicle existingVehicle){
+        if (payload.getBrand() != null){
+            existingVehicle.setBrand(payload.getBrand());
+        } else if (payload.getCreated() != null){
+            existingVehicle.setCreated(payload.getCreated());
+        } else if (payload.getDescription() != null){
+            existingVehicle.setDescription(payload.getDescription());
+        } else if (payload.getUpdate() != null){
+            existingVehicle.setUpdate(payload.getUpdate());
+        } else if (payload.getVehicle() != null){
+            existingVehicle.setVehicle(payload.getVehicle());
+        } else if (payload.getYear() != null){
+            existingVehicle.setYear(payload.getYear());
+        }
+        return existingVehicle;
     }
 }

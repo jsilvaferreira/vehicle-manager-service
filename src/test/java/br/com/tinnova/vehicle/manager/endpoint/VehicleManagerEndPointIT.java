@@ -12,7 +12,5 @@ public class VehicleManagerEndPointIT extends TestConfig {
 
     @Test
     public void findAllVehicles(){
-
-
     }
 }
