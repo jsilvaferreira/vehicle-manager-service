@@ -1,5 +1,6 @@
 package br.com.tinnova.vehicle.manager.service;
 
+import br.com.tinnova.vehicle.manager.endpoint.request.VehicleRequest;
 import br.com.tinnova.vehicle.manager.endpoint.resource.DistributionByManufacturerResource;
 import br.com.tinnova.vehicle.manager.exception.BadRequestException;
 import br.com.tinnova.vehicle.manager.exception.NotFoundException;
@@ -49,28 +50,28 @@ public class VehicleManagerService {
         return vehicleRepository.getTotalVehiclesByManufacturer();
     }
 
-    public Vehicle save(Vehicle payload) {
+    public Vehicle save(VehicleRequest payload) {
         if (payload == null){
             throw new BadRequestException(ErrorCodes.PAYLOAD_IS_MANDATORY);
         }
         return vehicleRepository.save(payload);
     }
 
-    public Vehicle updateVehicleData(Vehicle payload, long vehicleId) {
+    public Vehicle updateVehicleData(VehicleRequest payload, long vehicleId) {
         if (payload == null){
             throw new BadRequestException(ErrorCodes.PAYLOAD_IS_MANDATORY);
         }
         return vehicleRepository.updateVehicleData(payload, vehicleId);
     }
 
-    public Vehicle partialUpdate(Vehicle payload, Vehicle existingVehicle, long vehicleId) {
+    public Vehicle partialUpdate(VehicleRequest payload, Vehicle existingVehicle, long vehicleId) {
         if (payload == null){
             throw new BadRequestException(ErrorCodes.PAYLOAD_IS_MANDATORY);
         }
-        return vehicleRepository.partialUpdate(merge(payload,existingVehicle), vehicleId);
+        return vehicleRepository.partialUpdate(merge(payload,existingVehicle,vehicleId));
     }
 
-    private Vehicle merge (Vehicle payload, Vehicle existingVehicle){
+    private Vehicle merge (VehicleRequest payload, Vehicle existingVehicle, long vehicleId){
         if (payload.getBrand() != null){
             existingVehicle.setBrand(payload.getBrand());
         } else if (payload.getCreated() != null){
@@ -84,6 +85,9 @@ public class VehicleManagerService {
         } else if (payload.getYear() != null){
             existingVehicle.setYear(payload.getYear());
         }
+
+        existingVehicle.setId(vehicleId);
+
         return existingVehicle;
     }
 }

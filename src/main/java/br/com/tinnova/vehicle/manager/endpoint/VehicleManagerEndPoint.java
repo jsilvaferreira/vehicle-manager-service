@@ -1,6 +1,7 @@
 package br.com.tinnova.vehicle.manager.endpoint;
 
 
+import br.com.tinnova.vehicle.manager.endpoint.request.VehicleRequest;
 import br.com.tinnova.vehicle.manager.endpoint.resource.DistributionByManufacturerResource;
 import br.com.tinnova.vehicle.manager.endpoint.resource.UnsoldVehiclesResource;
 import br.com.tinnova.vehicle.manager.endpoint.resource.VehicleResource;
@@ -49,7 +50,7 @@ public class VehicleManagerEndPoint {
 
     //Todo Receber VehicleRequest e converter para Vehicle Entity, corrigir erro de data na hora de salvar na base
     @PostMapping("/veiculos")
-    public ResponseEntity<VehicleResource> save (@RequestBody(required = true) Vehicle payload){
+    public ResponseEntity<VehicleResource> save (@RequestBody(required = true) VehicleRequest payload){
         Vehicle vehicle = vehicleManagerService.save(payload);
         return ResponseEntity.status(HttpStatus.CREATED).body(VehicleRepositoryConverter.toResource(vehicle));
     }
@@ -63,7 +64,7 @@ public class VehicleManagerEndPoint {
     @PutMapping("/veiculos/{vehicleId}")
     public ResponseEntity<VehicleResource> updateVehicleData(
             @PathVariable("vehicleId") final Long vehicleId,
-            @RequestBody final Vehicle payload){
+            @RequestBody final VehicleRequest payload){
         Vehicle vehicle = vehicleManagerService.updateVehicleData(payload, vehicleId);
         return ResponseEntity.ok(VehicleRepositoryConverter.toResource(vehicle));
     }
@@ -71,8 +72,7 @@ public class VehicleManagerEndPoint {
     @PatchMapping("/veiculos/{vehicleId}")
     public ResponseEntity<VehicleResource> partialUpdate(
             @PathVariable("vehicleId") final Long vehicleId,
-            @RequestBody final Vehicle payload){
-
+            @RequestBody final VehicleRequest payload){
         Vehicle existingVehicle = vehicleManagerService.findVehicleById(vehicleId);
         Vehicle vehicle = vehicleManagerService.partialUpdate(payload, existingVehicle, vehicleId);
         return ResponseEntity.ok(VehicleRepositoryConverter.toResource(vehicle));

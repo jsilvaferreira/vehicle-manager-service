@@ -1,7 +1,9 @@
 package br.com.tinnova.vehicle.manager.repository;
 
 
+import br.com.tinnova.vehicle.manager.endpoint.request.VehicleRequest;
 import br.com.tinnova.vehicle.manager.endpoint.resource.DistributionByManufacturerResource;
+import br.com.tinnova.vehicle.manager.repository.converter.VehicleRepositoryConverter;
 import br.com.tinnova.vehicle.manager.repository.entity.Vehicle;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,13 +35,13 @@ public class VehicleRepository {
     }
 
     @Transactional
-    public Vehicle save(Vehicle payload) {
-        return vehicleJpaRepository.save(payload);
+    public Vehicle save(VehicleRequest payload) {
+        return vehicleJpaRepository.save(VehicleRepositoryConverter.toEntity(payload));
     }
 
     @Transactional
-    public Vehicle updateVehicleData(Vehicle payload,long vehicleId) {
-        return vehicleJpaRepository.update(payload,vehicleId);
+    public Vehicle updateVehicleData(VehicleRequest payload,long vehicleId) {
+        return vehicleJpaRepository.update(VehicleRepositoryConverter.toEntity(payload, vehicleId));
     }
 
     public long getTotalUnsoldVehicles() {
@@ -59,8 +61,8 @@ public class VehicleRepository {
         return  totalVehiclesByManufacturer;
     }
 
-    public Vehicle partialUpdate(Vehicle merge, long vehicleId) {
-        return vehicleJpaRepository.update(merge, vehicleId);
+    public Vehicle partialUpdate(Vehicle merge) {
+        return vehicleJpaRepository.update(merge);
     }
 }
 
