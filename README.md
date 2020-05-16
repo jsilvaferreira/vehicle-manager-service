@@ -1,110 +1,41 @@
 # vehicle-manager-service
 
-1- Realiza:
+1- A api realiza as seguintes ações:
 - Cadastro de Veiculos;
 - Atualização dos dados de um veiculo;
 - Exclusão de um veiculo;
 - Exibi informações de quantos veiculos não foram vendidos;
 - Exibi informação da distribuição de veículos por fabricante.
 
-2 - EndPoints:
--- GET - /api/veiculos
-  Response:
-  {
-        "id": 1,
-        "vehicle": "Focus",
-        "brand": "Ford",
-        "year": 2011,
-        "description": "Carro intermediário",
-        "sold": true,
-        "created": "2020-01-04T21:00:00-03:00",
-        "update": "2020-05-15T21:00:00-03:00"
-    },
-    {
-        "id": 2,
-        "vehicle": "Civic",
-        "brand": "Honda",
-        "year": 2009,
-        "description": "Carro de luxo",
-        "sold": false,
-        "created": "2019-12-31T21:00:00-03:00",
-        "update": "2020-04-30T21:00:00-03:00"
-    }
-    
--- GET - /api/veiculos/{vehicleId}
-  Response:
-  {
-    "id": 2,
-    "vehicle": "Civic",
-    "brand": "Honda",
-    "year": 2009,
-    "description": "Carro de luxo",
-    "sold": true,
-    "created": "2019-12-31T21:00:00-03:00",
-    "update": "2020-04-30T21:00:00-03:00"
-}
+2 - Executando o projeto:
 
--- GET - /api/veiculos/totalVendidos
-  Response:
-  {
-    "total": 2
-  }
-  
--- GET - /api/veiculos/distribuicaoPorFabricante
-  Response:
-  {
-        "brand": "Ford",
-        "total": 4
-    },
-    {
-        "brand": "Honda",
-        "total": 2
-    },
-    {
-        "brand": "Volkswagem",
-        "total": 1
-    },
-    {
-        "brand": "Chevrolet",
-        "total": 2
-    }
+2.1 - Baixar o projeto através do comando:
 
--- POST - /api/veiculos
-  Response:
-  {
-    "id": 9,
-    "vehicle": "Fit",
-    "brand": "Honda",
-    "year": 2020,
-    "description": "Carro de luxo",
-    "sold": true
-  }
+https://github.com/jsilvaferreira/vehicle-manager-service.git
 
--- DELETE - /api/veiculos/{vehicleId}
-  Response: N/A
-  
--- PUT - /api/veiculos
-  Response:
-  {
-    "id": 4,
-    "vehicle": "Gol",
-    "brand": "Volkswagem",
-    "year": 2010,
-    "description": "Carro de entrada",
-    "sold": true
- }
+2.2 - Realizar o comando "mvn clean install" para buildar o projeto. Se necessário, rodar o comando anterior como "mvn clean install  -U" caso tenha problemas com dependência do maven.
+
+2.3 - Configurar o banco de dados rodando o comando a seguir:
+
+Obs.: Lembrando que para rodar o comando abaixo é necessário ter o docker instalado em sua máquina:
+
+sudo docker run -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=tinnova -e MYSQL_USER=VehicleManager -e MYSQL_PASSWORD=vms -p 3306:3306 -d mysql:latest
+
+2.4 - Para entrar no banco de dados configurado no projeto, executas os seguintes comandos seguindo a ordem:
  
- 3 - Execução do banco de dados
- 
- 3.1 - Executar o seguinte comando para criação da imagem do docker do mysql com as configurações do projeto:
- 
- sudo docker run -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=tinnova -e MYSQL_USER=VehicleManager -e MYSQL_PASSWORD=vms -p 3306:3306 -d mysql:latest
- 
- 3.2 - Entrar no modo iterativo:
  docker exec -it mysql:latest bash
- 
- 3.3 - Executar os seguintes comandos para entrar no database tinnova:
- 
  mysql -u VehicleManager -p 
  use tinnova
- 
+
+3 - EndPoints:
+
+GET - /api/veiculos
+GET - /api/veiculos/{vehicleId}
+GET - /api/veiculos/totalVendidos
+GET - /api/veiculos/distribuicaoPorFabricante
+POST - /api/veiculos
+PUT - /api/veiculos
+DELETE - /api/veiculos/{vehicleId}
+
+4 - Dentro da pasta "../resources/postman" contém um arquivo para chamar cada EndPoint do projeto. Esse arquivo precisa ser inserido//importado no Programa Postman que pode ser baixado no site: https://www.postman.com/downloads/
+
