@@ -30,7 +30,7 @@ https://github.com/jsilvaferreira/vehicle-manager-service.git
  
  use tinnova
  ```
-Obs.: Caso você tenha problemas ao rodar o comando  ```docker exec -it mysql:latest bash ``` pode ser por conta do nome do seu container no docker que pode estar diferente. Rodar o comando ```docker ps -a```; procurar a imagem com o nome ```mysql:latest``` e ver o nome(coluna NAMES) que está atribuido a ela.
+***Obs.: Caso você tenha problemas ao rodar o comando  ```docker exec -it mysql:latest bash ``` pode ser por conta do nome do seu container no docker que pode estar diferente. Rodar o comando ```docker ps -a```; procurar a imagem com o nome ```mysql:latest``` e ver o nome(coluna NAMES) que está atribuido a ela.***
 
 3 - EndPoints:
 
