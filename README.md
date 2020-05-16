@@ -24,17 +24,25 @@ sudo docker run -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=tinnova -e MYSQL_U
 2.4 - Para entrar no banco de dados configurado no projeto, executas os seguintes comandos seguindo a ordem:
  
  docker exec -it mysql:latest bash
- mysql -u VehicleManager -p 
+ 
+ mysql -u VehicleManager -p
+ 
  use tinnova
 
 3 - EndPoints:
 
 GET - /api/veiculos
+
 GET - /api/veiculos/{vehicleId}
+
 GET - /api/veiculos/totalVendidos
+
 GET - /api/veiculos/distribuicaoPorFabricante
+
 POST - /api/veiculos
+
 PUT - /api/veiculos
+
 DELETE - /api/veiculos/{vehicleId}
 
 4 - Dentro da pasta "../resources/postman" contém um arquivo para chamar cada EndPoint do projeto. Esse arquivo precisa ser inserido//importado no Programa Postman que pode ser baixado no site: https://www.postman.com/downloads/
