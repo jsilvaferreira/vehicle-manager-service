@@ -54,5 +54,7 @@
 
 4 - Dentro da pasta  ```../resources/postman ``` contém um arquivo para chamar cada EndPoint do projeto. Esse arquivo precisa ser inserido/importado no Programa Postman. [Clique aqui para baixar](https://www.postman.com/downloads/)
 
+5 - Dentro da pasta ```../resources``` contém o arquivo ```import.sql```. Ao subir a aplicação, o sistema automáticamente insere alguns dados no base de dados. Caso o banco não esteja disponível(nenhuma sessão aberta), haveŕá erro na hora de iniciar o serviço.
+
 :+1::+1:
 
