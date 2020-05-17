@@ -45,6 +45,7 @@ public class VehicleManagerEndPointTest {
         assertThat(allVehicles).isNotEmpty();
     }
 
+    //Todo Criar pattern builder para criação de payload customizado
     private VehicleRequest createPayloadForPost_1(){
         VehicleRequest vehicleRequest = new VehicleRequest();
         vehicleRequest.setBrand("Chevrolet");
